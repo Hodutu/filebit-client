@@ -1,3 +1,5 @@
+'use strict';
+
 var credentials = require('./passwords.json');
 var request = require('request');
 var debug = require('../helpers/debug');
