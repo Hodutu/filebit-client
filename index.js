@@ -2,7 +2,6 @@
 
 var credentials = require('./passwords.json');
 var request = require('request');
-var debug = require('../helpers/debug');
 
 request = request.defaults({jar: true});
 
@@ -11,12 +10,12 @@ var Filebit_API = (function() {
   var loginUrl = 'http://filebit.pl/panel/login';
   var finalUrl = 'http://filebit.pl/includes/ajax.php';
 
-  var login = function(callback) {
+  var login = function(login, password, callback) {
 
     request({
         url: loginUrl,
         method:'POST',
-        form: {login: credentials.login, password: credentials.password}
+        form: {login: login, password: password}
     },
 
     function(error,response,body) {
@@ -25,7 +24,7 @@ var Filebit_API = (function() {
   };
 
   var getLinks = function(link, callback) {
-    debug.log('Intermediate link:', link);
+    console.log('Intermediate link:', link);
     request({
         url: finalUrl,
         method:'POST',
@@ -49,3 +48,14 @@ var Filebit_API = (function() {
 })();
 
 module.exports = Filebit_API;
+
+
+Filebit_API.login(credentials.login, credentials.password, function() {
+  Filebit_API.getLinks(
+    'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
+    function(result){
+      console.log('LINK: result');
+    }
+  )
+
+});
