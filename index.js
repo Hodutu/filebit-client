@@ -60,16 +60,18 @@ var Filebit_API = (function() {
 module.exports = Filebit_API;
 
 
-Filebit_API.login(credentials.login, credentials.password, function(error, status) {
-  if (error){
-    throw new Error('Cannot log in');
-    return;
-  }
-  Filebit_API.getLinks(
-    'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
-    function(error, result){
-      console.log('LINK:, ', result);
+Filebit_API.login(
+  credentials.login,
+  credentials.password,
+  function(error, status) {
+    if (error){
+      throw new Error('Cannot log in');
     }
-  );
-
-});
+    Filebit_API.getLinks(
+      'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
+      function(error, result){
+        console.log('LINK:, ', result);
+      }
+    );
+  }
+);
