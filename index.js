@@ -36,11 +36,6 @@ var Filebit_API = (function() {
     },
 
     function(error,response,body) {
-      if (error){
-        callback(error);
-        return;
-      }
-
       callback(JSON.parse(body)[0].array.downloadStream);
     });
 
