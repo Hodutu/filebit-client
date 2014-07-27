@@ -56,6 +56,6 @@ Filebit_API.login(credentials.login, credentials.password, function() {
     function(result){
       console.log('LINK: result');
     }
-  )
+  );
 
 });
