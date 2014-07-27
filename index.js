@@ -19,7 +19,12 @@ var Filebit_API = (function() {
     },
 
     function(error,response,body) {
-      if (error){
+      if (
+        error ||
+        response.body.indexOf('Podane hasło jest') > -1 ||
+        response.body.indexOf('Podany użytkownik nie istnieje') > -1
+      ) {
+        error = error || new Error('Login error!');
         callback(error);
         return;
       }
