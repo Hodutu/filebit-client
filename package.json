@@ -11,5 +11,8 @@
   "scripts": {
     "test": "node tests/filebit-client-tests.js",
     "lint": "node node_modules/jshint/bin/jshint ."
+  },
+  "dependencies": {
+    "request": "^2.39.0"
   }
 }
