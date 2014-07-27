@@ -19,7 +19,12 @@ var Filebit_API = (function() {
     },
 
     function(error,response,body) {
-      callback(true);
+      if (error){
+        callback(error);
+        return;
+      }
+
+      callback(null, true);
     });
   };
 
@@ -41,7 +46,7 @@ var Filebit_API = (function() {
         return;
       }
 
-      callback(JSON.parse(body)[0].array.downloadStream);
+      callback(null, JSON.parse(body)[0].array.downloadStream);
     });
 
   };
@@ -55,10 +60,14 @@ var Filebit_API = (function() {
 module.exports = Filebit_API;
 
 
-Filebit_API.login(credentials.login, credentials.password, function() {
+Filebit_API.login(credentials.login, credentials.password, function(error, status) {
+  if (error){
+    throw new Error('Cannot log in');
+    return;
+  }
   Filebit_API.getLinks(
     'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
-    function(result){
+    function(error, result){
       console.log('LINK:, ', result);
     }
   );
