@@ -70,7 +70,7 @@ Filebit_API.login(
   credentials.password,
   function(error, status) {
     if (error){
-      throw new Error('Cannot log in');
+      throw error;
     }
     Filebit_API.getLinks(
       'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
