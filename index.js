@@ -54,7 +54,7 @@ Filebit_API.login(credentials.login, credentials.password, function() {
   Filebit_API.getLinks(
     'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
     function(result){
-      console.log('LINK: result');
+      console.log('LINK:, ', result);
     }
   );
 
