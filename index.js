@@ -1,17 +1,19 @@
 'use strict';
 
-var credentials = require('./passwords.json');
 var request = require('request');
 
+// setting 'jar' to true allows our lib to remember cookies. We need this to
+// access parts of the site that need loging in.
 request = request.defaults({jar: true});
 
 var Filebit_API = (function() {
 
+  // URL where we login
   var loginUrl = 'http://filebit.pl/panel/login';
+  // URL with FileBit api.
   var finalUrl = 'http://filebit.pl/includes/ajax.php';
 
   var login = function(login, password, callback) {
-
     request({
         url: loginUrl,
         method:'POST',
@@ -65,6 +67,7 @@ var Filebit_API = (function() {
 module.exports = Filebit_API;
 
 
+var credentials = require('./passwords.json');
 Filebit_API.login(
   credentials.login,
   credentials.password,
@@ -75,7 +78,7 @@ Filebit_API.login(
     Filebit_API.getLinks(
       'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
       function(error, result){
-        console.log('LINK:, ', result);
+        console.log('LINK: ', result);
       }
     );
   }
