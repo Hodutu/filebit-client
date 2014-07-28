@@ -54,7 +54,11 @@ var Filebit_API = (function() {
         return;
       }
 
-      callback(null, JSON.parse(body)[0].array.downloadStream);
+      try {
+        callback(null, JSON.parse(body)[0].array.downloadStream);
+      } catch (e) {
+        callback(new Error('Cannot parse server answer'));
+      }
     });
 
   };
