@@ -6,6 +6,7 @@
   "devDependencies": {
     "assert": "^1.1.1",
     "jshint": "^2.5.2",
+    "nock": "^0.42.2",
     "precommit-hook": "^1.0.5"
   },
   "scripts": {

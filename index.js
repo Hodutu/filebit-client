@@ -21,6 +21,8 @@ var Filebit_API = (function() {
     },
 
     function(error,response,body) {
+      // This is ugly but I have no idea how to solve it in smart way
+      // on 6:30AM after 14 hours of working
       if (
         error ||
         response.body.indexOf('Podane hasło jest') > -1 ||
@@ -36,7 +38,6 @@ var Filebit_API = (function() {
   };
 
   var getLinks = function(link, callback) {
-    console.log('Intermediate link:', link);
     request({
         url: finalUrl,
         method:'POST',
@@ -65,21 +66,3 @@ var Filebit_API = (function() {
 })();
 
 module.exports = Filebit_API;
-
-
-var credentials = require('./passwords.json');
-Filebit_API.login(
-  credentials.login,
-  credentials.password,
-  function(error, status) {
-    if (error){
-      throw error;
-    }
-    Filebit_API.getLinks(
-      'http://bitshare.com/files/b4dctnwu/Suits.S04E06.HDTV.XviD-AFG.avi.html',
-      function(error, result){
-        console.log('LINK: ', result);
-      }
-    );
-  }
-);
