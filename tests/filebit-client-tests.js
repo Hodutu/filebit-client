@@ -7,13 +7,26 @@ var fbc = require('../');
 
 var login = 'fake-login';
 var password = 'fake-password';
+var link = 'fake-link';
 
 var mockLogin = function(answer) {
+nock('http://filebit.pl')
+.post('/panel/login',
+  {
+    login : login,
+    password: password
+  }
+)
+.reply(200, answer);
+};
+
+var mockFileBit = function(answer){
   nock('http://filebit.pl')
-  .post('/panel/login',
+  .post('/includes/ajax.php',
     {
-      login : login,
-      password: password
+      a: 'serverNewFile',
+      url: link,
+      t: +(new Date())
     }
   )
   .reply(200, answer);
@@ -38,5 +51,20 @@ fbc.login(login, password, function(err, resp) {
 mockLogin('Błąd: Podany użytkownik nie istnieje! Niezła lipa.');
 fbc.login(login, password, function(err, resp) {
   assert.equal(err.message, 'Login error!');
+  assert.equal(resp, undefined);
+});
+
+
+// File API test
+mockFileBit('[{"array":{"downloadStream":"final-link"}}]');
+fbc.getLinks(link, function(err, resp){
+  assert.equal(err, null);
+  assert.equal(resp, 'final-link');
+});
+
+// File API test
+mockFileBit('HWDP');
+fbc.getLinks(link, function(err, resp){
+  assert.equal(err.message, 'Cannot parse server answer');
   assert.equal(resp, undefined);
 });
