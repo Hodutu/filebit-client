@@ -43,6 +43,7 @@ fbc.login('my-login', 'my-password', function(error, loggedIn){
 
 ### To Do ###
   * Support of multiple files in one request
+  * Fix timestamps in tests (sometimes tests fail because the date used in Nock to mock the server response is different than the one used to send the request)
 
 
 ### Testing ###
