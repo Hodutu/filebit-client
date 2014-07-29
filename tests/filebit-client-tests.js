@@ -57,14 +57,14 @@ fbc.login(login, password, function(err, resp) {
 
 // File API test
 mockFileBit('[{"array":{"downloadStream":"final-link"}}]');
-fbc.getLinks(link, function(err, resp){
+fbc.getLink(link, function(err, resp){
   assert.equal(err, null);
   assert.equal(resp, 'final-link');
 });
 
 // File API test
 mockFileBit('HWDP');
-fbc.getLinks(link, function(err, resp){
+fbc.getLink(link, function(err, resp){
   assert.equal(err.message, 'Cannot parse server answer');
   assert.equal(resp, undefined);
 });
