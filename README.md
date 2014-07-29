@@ -1,8 +1,8 @@
 # filebit-client by [@michalbe](http://github.com/michalbe) #
-Automated client for file download helper - [filebit.pl](http://filebit.pl)
+Automated client for file download helper - filebit.pl
 
 ### What? ###
-Filebit-client allows to use filebit in node.js environment.
+Filebit-client allows to use [filebit.pl](http://filebit.pl) in node.js environment.
 
 ### API: ###
 
