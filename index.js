@@ -37,7 +37,7 @@ var Filebit_API = (function() {
     });
   };
 
-  var getLinks = function(link, callback) {
+  var getLink = function(link, callback) {
     request({
         url: finalUrl,
         method:'POST',
@@ -65,7 +65,7 @@ var Filebit_API = (function() {
 
   return {
     login: login,
-    getLinks: getLinks
+    getLink: getLink
   };
 })();
 
