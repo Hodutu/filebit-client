@@ -1,6 +1,6 @@
 {
   "name": "filebit-client",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Michał Budzyński <michal@virtualdesign.pl>",
   "repository": "git@github.com:michalbe/filebit-client.git",
   "devDependencies": {
