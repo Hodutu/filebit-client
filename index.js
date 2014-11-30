@@ -15,9 +15,9 @@ var Filebit_API = (function() {
 
   var login = function(login, password, callback) {
     request({
-        url: loginUrl,
-        method:'POST',
-        form: {login: login, password: password}
+      url: loginUrl,
+      method:'POST',
+      form: {login: login, password: password}
     },
 
     function(error,response,body) {
@@ -39,13 +39,13 @@ var Filebit_API = (function() {
 
   var getLink = function(link, callback) {
     request({
-        url: finalUrl,
-        method:'POST',
-        form: {
-          a: 'serverNewFile',
-          url: link,
-          t: +(new Date())
-        }
+      url: finalUrl,
+      method:'POST',
+      form: {
+        a: 'serverNewFile',
+        url: link,
+        t: +(new Date())
+      }
     },
 
     function(error,response,body) {
@@ -55,7 +55,12 @@ var Filebit_API = (function() {
       }
 
       try {
-        callback(null, JSON.parse(body)[0].array.downloadStream);
+        body = JSON.parse(body)[0];
+        if (error in body) {
+          callback(new Error('Server error'));
+        } else {
+          callback(null, body.array.downloadStream);
+        }
       } catch (e) {
         callback(new Error('Cannot parse server answer'));
       }
