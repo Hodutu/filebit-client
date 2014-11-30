@@ -68,3 +68,10 @@ fbc.getLink(link, function(err, resp){
   assert.equal(err.message, 'Cannot parse server answer');
   assert.equal(resp, undefined);
 });
+
+// Server error
+mockFileBit('[{"array":{"downloadStream":"final-link"},"error":"1337"}]');
+fbc.getLink(link, function(err, resp){
+  assert.equal(err.message, 'Server error');
+  assert.equal(resp, undefined);
+});
