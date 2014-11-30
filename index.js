@@ -56,7 +56,7 @@ var Filebit_API = (function() {
 
       try {
         body = JSON.parse(body)[0];
-        if ('error' in body) {
+        if ('error' in body && parseInt(body.error, 10) !== 0) {
           callback(new Error('Server error'));
         } else {
           callback(null, body.array.downloadStream);
